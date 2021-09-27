@@ -10,6 +10,10 @@ app.get('/', (req, res) => {
 
 app.use('/api/v1/hello', helloRouter)
 
-app.listen(port, () => {
-    console.log(`Servidor executando no endereço http://localhost:${port}`)
-})
+if (require.main === module) {
+    app.listen(port, () => {
+        console.log(`Servidor executando no endereço http://localhost:${port}`)
+    })
+}
+
+module.exports = app

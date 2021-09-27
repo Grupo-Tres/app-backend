@@ -7,7 +7,7 @@
     "dev": "nodemon -w src/server.js --exec \" babel-node src/server.js --presets env \"",
     "build": "babel src -s -D -d dist --presets env",
     "start": "node dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,8 +23,10 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
+    "jest": "^27.2.2",
     "nodemon": "^2.0.12",
-    "prisma": "^3.1.1"
+    "prisma": "^3.1.1",
+    "supertest": "^6.1.6"
   },
   "dependencies": {
     "@prisma/client": "^3.1.1",
