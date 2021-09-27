@@ -27,5 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
-    - run: npm run build
-    - run: npm start & npx jest --runInBand
+    - run: npm run dev & npx jest --runInBand
