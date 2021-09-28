@@ -4,10 +4,13 @@
   "description": "Repositório para desenvolvimento do backend do sistema",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon -w src --exec \" babel-node src --presets env \"",
+    "dev": "npm run db:up && npm run babel && npm run db:stop",
+    "babel": "nodemon -w src/server.js --exec \" babel-node src/server.js --presets env \"",
     "build": "babel src -s -D -d dist --presets env",
     "start": "node dist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:up": "docker-compose -f docker-compose.yaml up -d",
+    "db:stop": "docker-compose -f docker-compose.yaml stop",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -23,6 +26,13 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "nodemon": "^2.0.12"
+    "jest": "^27.2.2",
+    "nodemon": "^2.0.12",
+    "prisma": "^3.1.1",
+    "supertest": "^6.1.6"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.1.1",
+    "express": "^4.17.1"
   }
 }
