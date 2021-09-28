@@ -1,5 +1,6 @@
 import express from "express";
 import helloRouter from '../src/api/router/hello-router'
+import userRouter from '../src/api/router/user-router'
 
 const app = express()
 const port = process.env.port || 5000
@@ -9,6 +10,7 @@ app.get('/', (req, res) => {
 }) 
 
 app.use('/api/v1/hello', helloRouter)
+app.use('/api/v1/user', userRouter)
 
 if (require.main === module) {
     app.listen(port, () => {
