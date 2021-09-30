@@ -7,6 +7,7 @@ class User {
                 id: "77d79bdb-cf84-46b1-937a-6b5c022263b4",
                 nome: "John Dee",
                 cep: "04104907",
+                email: "john.dee@gmail.com",
                 telefone: "9999-9999",
                 admin: false
             }
