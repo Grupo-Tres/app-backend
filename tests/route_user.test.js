@@ -29,4 +29,26 @@ describe('Testa as rotas de usuário', () => {
         expect(response.statusCode).toEqual(200);
         expect(response.body).toMatchObject(bodyOut);
     })
+
+    test('retorno do método GET será um array de objetos', async () => {
+        const response = await supertest(app)
+            .get('/api/v1/user')
+        expect(response.statusCode).toEqual(200)
+        expect(response.body).toContainEqual(bodyOut.registro)
+    })
+
+    test('restorno de GET com id será um objeto', async () => {
+        const response = await supertest(app)
+            .get('/api/v1/user/77d79bdb-cf84-46b1-937a-6b5c022263b4')
+        expect(response.statusCode).toEqual(200)
+        expect(response.body).toMatchObject(bodyOut.registro)
+    })
+
+  /** test('retorno do método PUT será um objeto', () => {
+        const response = await supertest(app)
+            .put('/api/v1/user/77d79bdb-cf84-46b1-937a-6b5c022263b4')
+            .send(bodyIn)
+        expect(response.statusCode).toEqual(200)
+        expect(response.body).toMatchObject(bodyOut.registro)
+    })*/
 })
