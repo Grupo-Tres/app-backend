@@ -3,10 +3,12 @@ import app from '../src/server'
 
 describe('Testa as rotas de usuário', () => {
 
+    let idTest = ""
+
     const bodyIn = {
         nome: "John Dee",
         cep: "04104907",
-        email: "john.dee@gmail.com",
+        email: "johndee@gmail.com",
         telefone: "9999-9999",
         admin: false
     }
@@ -17,17 +19,30 @@ describe('Testa as rotas de usuário', () => {
             id: expect.stringMatching(/\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/),
             nome: "John Dee",
             cep: "04104907",
-            email: "john.dee@gmail.com",
+            email: "johndee@gmail.com",
             telefone: "9999-9999",
             admin: false
         }
         
     }
+
+    const usuarioCadastrado = {
+        "msg": "O usuário já está cadastrado no sistema"
+      }
+
     test('retorno do método POST será um objeto semelhante a bodyOut', async () => {
         const response = await supertest(app)
             .post('/api/v1/user').send(bodyIn)
-        expect(response.statusCode).toEqual(200);
-        expect(response.body).toMatchObject(bodyOut);
+        expect(response.statusCode).toEqual(200)
+        expect(response.body).toMatchObject(bodyOut)
+        idTest = response.body.registro.id
+    })
+
+    test('retorno do método POST será um objeto usuário cadastrado', async () => {
+        const response = await supertest(app)
+            .post('/api/v1/user').send(bodyIn)
+        expect(response.statusCode).toEqual(200)
+        expect(response.body).toMatchObject(usuarioCadastrado)
     })
 
     test('retorno do método GET será um array de objetos', async () => {
@@ -38,17 +53,30 @@ describe('Testa as rotas de usuário', () => {
     })
 
     test('restorno de GET com id será um objeto', async () => {
+        console.log('idTest: ', idTest)
         const response = await supertest(app)
-            .get('/api/v1/user/77d79bdb-cf84-46b1-937a-6b5c022263b4')
+            .get('/api/v1/user/' + idTest)
         expect(response.statusCode).toEqual(200)
         expect(response.body).toMatchObject(bodyOut.registro)
     })
 
-  /** test('retorno do método PUT será um objeto', () => {
+    test('retorno do método PUT será um objeto', async () => {
         const response = await supertest(app)
-            .put('/api/v1/user/77d79bdb-cf84-46b1-937a-6b5c022263b4')
-            .send(bodyIn)
+            .put('/api/v1/user/' + idTest)
+            .send({
+                telefone: "2222-2222"
+            })
         expect(response.statusCode).toEqual(200)
-        expect(response.body).toMatchObject(bodyOut.registro)
-    })*/
+        expect(response.body).toEqual(expect.objectContaining({
+            telefone: "2222-2222"
+        }))
+    })
+
+    test('retorno do delete será um objeto', async () => {
+        const response = await supertest(app)
+            .delete('/api/v1/user/' + idTest)
+        expect(response.body).toMatchObject({
+            delete: idTest
+        })
+    })
 })

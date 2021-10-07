@@ -10,7 +10,7 @@
     "start": "node dist",
     "db:up": "docker-compose -f docker-compose.yaml up -d",
     "db:stop": "docker-compose -f docker-compose.yaml stop",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "repository": {
     "type": "git",

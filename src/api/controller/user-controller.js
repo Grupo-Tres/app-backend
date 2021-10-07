@@ -1,45 +1,64 @@
+import { PrismaClient } from 'prisma/prisma-client'
+const prisma = new PrismaClient()
 class User {
-
-    post(req, res) {
-        const mockObj = {
-            status: "ok",
-            registro: {
-                id: "77d79bdb-cf84-46b1-937a-6b5c022263b4",
-                nome: "John Dee",
-                cep: "04104907",
-                email: "john.dee@gmail.com",
-                telefone: "9999-9999",
-                admin: false
+    
+    async post(req, res) {
+        const user = await prisma.user.findMany(
+            {
+                where: {
+                    email: req.body.email
+                }
+            }
+        )
+        let resposta = {}
+        if (user.length == 0) {
+            const creatUser = await prisma.user.create({ data: req.body })
+            resposta = {
+                status: "ok",
+                registro: creatUser
+            }
+        } else {
+            resposta = {
+                msg: "O usuário já está cadastrado no sistema"
             }
         }
 
-        res.send(mockObj)
+        res.send(resposta)
     }
 
-    get(req, res){
-        res.send([
-            {
-                id: "77d79bdb-cf84-46b1-937a-6b5c022263b4",
-                nome: "John Dee",
-                cep: "04104907",
-                email: "john.dee@gmail.com",
-                telefone: "9999-9999",
-                admin: false
-            }]
-        ).json
+    async get(req, res){
+        const user = await prisma.user.findUnique({
+            where: {
+              id: req.params.id,
+            },
+          })
+        res.send(user).json
     }
 
-    getAll(req, res){
-        res.send(
-            {
-                id: req.params.id,
-                nome: "John Dee",
-                cep: "04104907",
-                email: "john.dee@gmail.com",
-                telefone: "9999-9999",
-                admin: false
+    async getAll(req, res){
+        const usuarios = await prisma.user.findMany()
+        res.send(usuarios).json
+    }
+
+    async put(req, res) {
+        const usuario = await prisma.user.update({
+            where: {
+                id: req.params.id
+            },
+            data: req.body
+        })
+        res.send(usuario)
+    }
+
+    async delete(req, res) {
+        const usuario = await prisma.user.delete({
+            where: {
+                id: req.params.id
             }
-        ).json
+        })
+        res.send({
+            delete: req.params.id
+        })
     }
 }
 

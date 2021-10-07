@@ -1,5 +1,4 @@
 import express from "express";
-import helloRouter from '../src/api/router/hello-router'
 import userRouter from '../src/api/router/user-router'
 
 const app = express()
@@ -9,7 +8,8 @@ app.get('/', (req, res) => {
     res.status(200).send({"server_status": "ok"}).json
 }) 
 
-app.use('/api/v1/hello', helloRouter)
+app.use(express.urlencoded({extended: true}))
+app.use(express.json())
 app.use('/api/v1/user', userRouter)
 
 if (require.main === module) {

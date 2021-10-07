@@ -13,6 +13,8 @@ generator client {
 model user {
   id String @id @default(uuid())
   nome String
-  email String?
+  cep String
+  email String
   telefone String
+  admin Boolean
 }
