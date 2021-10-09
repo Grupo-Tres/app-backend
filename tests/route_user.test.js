@@ -21,7 +21,9 @@ describe('Testa as rotas de usuário', () => {
             cep: "04104907",
             email: "johndee@gmail.com",
             telefone: "9999-9999",
-            admin: false
+            admin: false,
+            createdAt: expect.stringMatching(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9][0-9][0-9]Z/),
+            updatedAt: expect.stringMatching(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9][0-9][0-9]Z/)
         }
         
     }
