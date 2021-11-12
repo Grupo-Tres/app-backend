@@ -4,7 +4,7 @@ const prisma = new PrismaClient();
 class Produto {
   async post(req, res) {
     const creatproduto = await prisma.produto.create({ data: req.body });
-    resposta = {
+    const resposta = {
       status: "ok",
       registro: creatproduto,
     };
