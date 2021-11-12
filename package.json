@@ -10,7 +10,7 @@
     "start": "node dist",
     "db:up": "docker-compose -f docker-compose.yaml up -d",
     "db:stop": "docker-compose -f docker-compose.yaml stop",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "repository": {
     "type": "git",
@@ -28,11 +28,11 @@
     "babel-preset-env": "^1.7.0",
     "jest": "^27.2.2",
     "nodemon": "^2.0.12",
-    "prisma": "^3.1.1",
+    "prisma": "^3.4.0",
     "supertest": "^6.1.6"
   },
   "dependencies": {
-    "@prisma/client": "^3.1.1",
+    "@prisma/client": "^3.4.0",
     "express": "^4.17.1"
   }
 }
