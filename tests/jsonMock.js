@@ -79,7 +79,6 @@ const bodyOutCardapio =
       },
     ],
   };
-
 module.exports = {
   bodyInCategoria,
   bodyOutcategoria,
