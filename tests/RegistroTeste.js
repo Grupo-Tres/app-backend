@@ -3,7 +3,7 @@ import supertest from "supertest";
 
 class RegistroTeste {
   rota = "";
-  idCategoria = "";
+  idRegistro = "";
   bodyIn = {};
 
   constructor(rota, bodyIn) {
@@ -12,19 +12,19 @@ class RegistroTeste {
   }
 
   async criaRegistro() {
-    const respostaCategoria = await supertest(app)
+    const respostaRegistro = await supertest(app)
       .post(this.rota)
       .send(this.bodyIn);
-    this.idCategoria = respostaCategoria.body.registro.id;
-    return respostaCategoria.body.registro.id;
+    this.idRegistro = respostaRegistro.body.registro.id;
+    return respostaRegistro.body.registro.id;
   }
 
-  async getIdCategoria() {
-    return this.idCategoria;
+  async getIdRegistro() {
+    return this.idRegistro;
   }
 
-  async delCategoria() {
-    await supertest(app).delete(this.rota + this.idCategoria);
+  async delRegistro() {
+    await supertest(app).delete(this.rota + this.idRegistro);
   }
 }
 
