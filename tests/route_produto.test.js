@@ -1,7 +1,7 @@
-import supertest from "supertest";
-import app from "../src/server";
-import RegistroTeste from "./RegistroTeste";
-import { bodyInCategoria, bodyInProduto, bodyOutProduto } from "./jsonMock";
+import supertest from "supertest"
+import app from "../src/server"
+import RegistroTeste from "./RegistroTeste"
+import { bodyInCategoria, bodyInProduto, bodyOutProduto } from "./jsonMock"
 
 describe("Testa as rotas da tabela Produto", () => {
   let idTest = "";
@@ -59,6 +59,6 @@ describe("Testa as rotas da tabela Produto", () => {
     expect(response.body).toMatchObject({
       delete: idTest,
     });
-    await registroCategoria.delCategoria();
+    await registroCategoria.delRegistro();
   });
 });

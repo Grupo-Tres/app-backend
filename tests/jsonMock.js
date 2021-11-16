@@ -55,9 +55,34 @@ const bodyOutProduto = {
     ),
   },
 };
+
+const bodyOutCardapio = 
+  {
+    id: expect.stringMatching(
+      /\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/
+    ),
+    sessaoName: "Pizza Salgada",
+    secaoId: "pizzasal",
+    produtos: [
+      {
+        id: expect.stringMatching(
+          /\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/
+        ),
+        nome: "Calabresa com Catupiry",
+        descricao: "Pizza de calbresa com catupiry",
+        foto: "/image/calabresa.jpg",
+        estoque: true,
+        tamanho: "grande",
+        quantidade: 10,
+        disponivel: true,
+        preco: 40.0
+      },
+    ],
+  };
 module.exports = {
   bodyInCategoria,
   bodyOutcategoria,
   bodyInProduto,
   bodyOutProduto,
+  bodyOutCardapio
 };
