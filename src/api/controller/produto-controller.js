@@ -8,7 +8,7 @@ class Produto {
       status: "ok",
       registro: creatproduto,
     };
-
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(resposta);
   }
 
@@ -18,11 +18,13 @@ class Produto {
         id: req.params.id,
       },
     });
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(produto).json;
   }
 
   async getAll(req, res) {
     const usuarios = await prisma.produto.findMany();
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(usuarios).json;
   }
 
@@ -33,6 +35,7 @@ class Produto {
       },
       data: req.body,
     });
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(usuario);
   }
 
@@ -42,6 +45,7 @@ class Produto {
         id: req.params.id,
       },
     });
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send({
       delete: req.params.id,
     });
