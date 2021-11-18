@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "motty.db.elephantsql.com",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "ElephantBD",
+            "database": "zqqyykav",
+            "username": "zqqyykav",
+            "password": "AQKICfnh9nVU-PKDWl82xn6arJ_pGT3b"
+        }
+    ]
+}
