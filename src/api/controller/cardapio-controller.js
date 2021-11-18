@@ -46,6 +46,7 @@ class Cardapio {
         ],
       },
     ];
+    res.setHeader('Access-Control-Allow-Origin', process.env.CORS_URL)
     res.send(cardapio).json;
   }
 }

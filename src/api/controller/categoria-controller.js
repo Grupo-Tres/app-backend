@@ -8,7 +8,7 @@ class Categoria {
       status: "ok",
       registro: creatcategoria,
     };
-
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(resposta);
   }
 
@@ -18,11 +18,13 @@ class Categoria {
         id: req.params.id,
       },
     });
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(categoria).json;
   }
 
   async getAll(req, res) {
     const usuarios = await prisma.categoria.findMany();
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(usuarios).json;
   }
 
@@ -33,6 +35,7 @@ class Categoria {
       },
       data: req.body,
     });
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send(usuario);
   }
 
@@ -42,6 +45,7 @@ class Categoria {
         id: req.params.id,
       },
     });
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
     res.send({
       delete: req.params.id,
     });
