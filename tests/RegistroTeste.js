@@ -24,7 +24,7 @@ class RegistroTeste {
   }
 
   async delRegistro() {
-    await supertest(app).delete(this.rota + this.idRegistro);
+    await supertest(app).delete(this.rota + '/' + this.idRegistro);
   }
 }
 
