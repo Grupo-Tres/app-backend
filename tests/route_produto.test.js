@@ -15,7 +15,6 @@ describe("Testa as rotas da tabela Produto", () => {
     idCategoriaTeste = await registroCategoria.criaRegistro();
     bodyInProduto.categoriaId = idCategoriaTeste;
     bodyOutProduto.registro.categoriaId = idCategoriaTeste;
-    console.log("Categoria Teste: ", idCategoriaTeste);
   });
 
   test("retorno do método POST será um objeto semelhante a bodyOut", async () => {
@@ -34,7 +33,6 @@ describe("Testa as rotas da tabela Produto", () => {
   });
 
   test("restorno de GET com id será um objeto", async () => {
-    console.log("idTest: ", idTest);
     const response = await supertest(app).get("/api/v1/produto/" + idTest);
     expect(response.statusCode).toEqual(200);
     expect(response.body).toMatchObject(bodyOutProduto.registro);
