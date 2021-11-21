@@ -87,8 +87,9 @@ const bodyOutCardapio = {
       descricao: "Pizza de calbresa com catupiry",
       foto: "/image/calabresa.jpg",
       estoque: true,
+      opcoes: [],
       quantidade: 10,
-      disponivel: true
+      disponivel: true,
     },
   ],
 };

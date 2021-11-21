@@ -15,6 +15,13 @@ class Cardapio {
             descricao: true,
             foto: true,
             estoque: true,
+            opcoes: {
+              select: {
+                id: true,
+                opcao: true,
+                preco: true
+              }
+            },
             quantidade: true,
             disponivel: true
           },
