@@ -55,7 +55,6 @@ describe('Testa as rotas de usuário', () => {
     })
 
     test('restorno de GET com id será um objeto', async () => {
-        console.log('idTest: ', idTest)
         const response = await supertest(app)
             .get('/api/v1/user/' + idTest)
         expect(response.statusCode).toEqual(200)

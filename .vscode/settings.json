@@ -9,6 +9,16 @@
             "database": "zqqyykav",
             "username": "zqqyykav",
             "password": "AQKICfnh9nVU-PKDWl82xn6arJ_pGT3b"
+        },
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "name": "CorleoneLocal",
+            "database": "corleonedb",
+            "username": "postgres",
+            "password": "postgresdev"
         }
     ]
 }
