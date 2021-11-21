@@ -15,6 +15,7 @@ model user {
   nome      String
   cep       String
   email     String
+  senha     String
   telefone  String
   admin     Boolean
   createdAt DateTime @default(now())
