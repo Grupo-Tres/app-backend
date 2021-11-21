@@ -15,10 +15,8 @@ class Cardapio {
             descricao: true,
             foto: true,
             estoque: true,
-            tamanho: true,
             quantidade: true,
-            disponivel: true,
-            preco: true,
+            disponivel: true
           },
         },
       },
