@@ -9,6 +9,7 @@ describe('Testa as rotas de usuário', () => {
         nome: "John Dee",
         cep: "04104907",
         email: "johndee@gmail.com",
+        senha: "123456",
         telefone: "9999-9999",
         admin: false
     }
@@ -20,6 +21,7 @@ describe('Testa as rotas de usuário', () => {
             nome: "John Dee",
             cep: "04104907",
             email: "johndee@gmail.com",
+            senha: "123456",
             telefone: "9999-9999",
             admin: false,
             createdAt: expect.stringMatching(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9][0-9][0-9]Z/),
