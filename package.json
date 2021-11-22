@@ -2,12 +2,12 @@
   "name": "app-backend",
   "version": "1.0.0",
   "description": "Repositório para desenvolvimento do backend do sistema",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "dev": "npm run db:up && npm run babel && npm run db:stop",
     "babel": "nodemon -w src/server.js --exec \" babel-node src/server.js --presets env \"",
     "build": "babel src -s -D -d dist --presets env",
-    "start": "node dist",
+    "start": "node dist/server.js",
     "db:up": "docker-compose -f docker-compose.yaml up -d",
     "db:stop": "docker-compose -f docker-compose.yaml stop",
     "test": "jest --runInBand"
@@ -32,6 +32,7 @@
     "supertest": "^6.1.6"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@prisma/client": "^3.4.2",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1"
