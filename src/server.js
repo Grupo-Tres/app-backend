@@ -1,9 +1,10 @@
-import express from "express";
-import userRouter from '../src/api/router/user-router'
-import produtoRouter from '../src/api/router/produto-router'
-import categoriaRouter from '../src/api/router/categoria-router'
-import cardapioRouter from '../src/api/router/cardapio-router'
-import opcoesRouter from '../src/api/router/opcoes-router'
+import "@babel/polyfill"
+import express from "express"
+import userRouter from './api/router/user-router'
+import produtoRouter from './api/router/produto-router'
+import categoriaRouter from './api/router/categoria-router'
+import cardapioRouter from './api/router/cardapio-router'
+import opcoesRouter from './api/router/opcoes-router'
 
 const app = express()
 const port = process.env.PORT || 5000
