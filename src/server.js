@@ -8,6 +8,7 @@ import opcoesRouter from './api/router/opcoes-router'
 
 const app = express()
 const port = process.env.PORT || 5000
+const host = process.env.HOST || 'http://localhost'
 
 app.get('/', (req, res) => {
     res.status(200).send({"server_status": "ok"}).json
@@ -23,7 +24,7 @@ app.use('/api/v1/opcoes', opcoesRouter)
 
 if (require.main === module) {
     app.listen(port, () => {
-        console.log(`Servidor executando no endereço http://localhost:${port}`)
+        console.log(`Servidor executando no endereço ${host}:${port}`)
     })
 }
 
