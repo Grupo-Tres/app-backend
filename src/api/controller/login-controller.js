@@ -1,5 +1,8 @@
 import { PrismaClient } from "prisma/prisma-client";
+import Autentication from '../../model/Autentication';
+
 const prisma = new PrismaClient();
+const autentication = new Autentication();
 
 class Login {
   async post(req, res, next) {
@@ -18,11 +21,16 @@ class Login {
           message: "Senha incorreta",
         });
       } else {
+        const token =  autentication.getToken(user.id)
         return res.status(200).json({
+          token: token,
           user: user,
         });
       }
     }
+  }
+
+  async logout(req, res) {
   }
 }
 
