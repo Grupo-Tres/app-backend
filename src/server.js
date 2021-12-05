@@ -1,6 +1,6 @@
-import "@babel/polyfill"
-import express from "express"
+import express from "express";
 import userRouter from './api/router/user-router'
+import loginRouter from './api/router/login-router'
 import produtoRouter from './api/router/produto-router'
 import categoriaRouter from './api/router/categoria-router'
 import cardapioRouter from './api/router/cardapio-router'
@@ -17,6 +17,7 @@ app.get('/', (req, res) => {
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use('/api/v1/user', userRouter)
+app.use('/api/v1/login', loginRouter)
 app.use('/api/v1/produto', produtoRouter)
 app.use('/api/v1/categoria', categoriaRouter)
 app.use('/api/v1/cardapio', cardapioRouter)

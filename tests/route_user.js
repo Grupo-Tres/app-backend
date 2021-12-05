@@ -6,26 +6,25 @@ describe('Testa as rotas de usuário', () => {
     let idTest = ""
 
     const bodyIn = {
-        nome: "John Dee",
-        cep: "04104907",
-        email: "johndee@gmail.com",
-        senha: "123456",
-        telefone: "9999-9999",
-        admin: false
-    }
+      nome: "John Dee",
+      cep: "09250230",
+      rua: "Alameda Campinas",
+      bairro: "Jardins",
+      numero: "30",
+      complemento: "ap 12",
+      cidade: "São Paulo",
+      estado: "SP",
+      email: "johndee@gmail.com",
+      senha: "5555",
+      telefone: "4444-8888",
+      admin: false,
+    };
     
     const bodyOut = {
         status: "ok",
         registro: {
             id: expect.stringMatching(/\b[0-9a-f]{8}\b-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-\b[0-9a-f]{12}\b/),
-            nome: "John Dee",
-            cep: "04104907",
-            email: "johndee@gmail.com",
-            senha: "123456",
-            telefone: "9999-9999",
-            admin: false,
-            createdAt: expect.stringMatching(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9][0-9][0-9]Z/),
-            updatedAt: expect.stringMatching(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))T[0-2][0-9]:[0-5][0-9]:[0-5][0-9].[0-9][0-9][0-9]Z/)
+            nome: "John Dee"
         }
         
     }
@@ -53,7 +52,7 @@ describe('Testa as rotas de usuário', () => {
         const response = await supertest(app)
             .get('/api/v1/user')
         expect(response.statusCode).toEqual(200)
-        expect(response.body).toContainEqual(bodyOut.registro)
+        expect(response.body[0].nome).toBe(bodyOut.registro.nome)
     })
 
     test('restorno de GET com id será um objeto', async () => {

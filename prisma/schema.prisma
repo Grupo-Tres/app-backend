@@ -11,15 +11,21 @@ generator client {
 }
 
 model user {
-  id        String   @id @default(uuid())
-  nome      String
-  cep       String
-  email     String
-  senha     String
-  telefone  String
-  admin     Boolean
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id          String   @id @default(uuid())
+  nome        String
+  cep         String
+  rua         String
+  bairro      String
+  numero      String
+  complemento String
+  cidade      String
+  estado      String
+  email       String
+  senha       String
+  telefone    String
+  admin       Boolean
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model categoria {
