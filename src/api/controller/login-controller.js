@@ -1,5 +1,5 @@
 import { PrismaClient } from "prisma/prisma-client";
-import Autentication from '../../model/Autentication';
+import Autentication from "../../model/Autentication";
 
 const prisma = new PrismaClient();
 const autentication = new Autentication();
@@ -12,17 +12,20 @@ class Login {
       },
     });
     if (!user) {
-      return res.status(401).json({
+      return res.status(404).json({
+        status_code: 404,
         message: "Usuário não encontrado",
       });
     } else {
       if (user.senha !== req.body.senha) {
         return res.status(401).json({
-          message: "Senha incorreta",
+          status_code: 401,
+          message: "Não autorizado",
         });
       } else {
-        const token =  autentication.getToken(user.id)
+        const token = autentication.getToken(user.id);
         return res.status(200).json({
+          status_code: 200,
           token: token,
           user: user,
         });
@@ -30,8 +33,7 @@ class Login {
     }
   }
 
-  async logout(req, res) {
-  }
+  async logout(req, res) {}
 }
 
-module.exports = Login
+module.exports = Login;
