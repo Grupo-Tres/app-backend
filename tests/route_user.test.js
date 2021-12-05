@@ -52,7 +52,7 @@ describe('Testa as rotas de usuário', () => {
         const response = await supertest(app)
             .get('/api/v1/user')
         expect(response.statusCode).toEqual(200)
-        expect(response.body[0].nome).toBe(bodyOut.registro.nome)
+        expect(response.body).toContainEqual(expect.objectContaining(bodyOut.registro))
     })
 
     test('restorno de GET com id será um objeto', async () => {
