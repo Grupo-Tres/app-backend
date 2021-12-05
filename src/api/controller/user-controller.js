@@ -16,6 +16,7 @@ class User {
       };
     } else {
       resposta = {
+        status: "error",
         msg: "O usuário já está cadastrado no sistema",
       };
     }
