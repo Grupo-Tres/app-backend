@@ -11,26 +11,30 @@ class Login {
         email: req.body.email,
       },
     });
+    let resposta = {};
     if (!user) {
-      return res.status(404).json({
+      resposta = {
         status_code: 404,
         message: "Usuário não encontrado",
-      });
+      };
     } else {
       if (user.senha !== req.body.senha) {
-        return res.status(401).json({
+        resposta = {
           status_code: 401,
           message: "Não autorizado",
-        });
+        };
       } else {
         const token = autentication.getToken(user.id);
-        return res.status(200).json({
+        resposta = {
           status_code: 200,
+          message: "Autorizado",
           token: token,
           user: user,
-        });
+        };
       }
     }
+    res.setHeader("Access-Control-Allow-Origin", process.env.CORS_URL);
+    return res.status(resposta.status_code).send(resposta);
   }
 
   async logout(req, res) {}
