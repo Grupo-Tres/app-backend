@@ -5,6 +5,7 @@ import produtoRouter from './api/router/produto-router'
 import categoriaRouter from './api/router/categoria-router'
 import cardapioRouter from './api/router/cardapio-router'
 import opcoesRouter from './api/router/opcoes-router'
+import pedidoRouter from './api/router/pedido-router'
 
 const app = express()
 const port = process.env.PORT || 5000
@@ -24,6 +25,7 @@ app.use('/api/v1/produto', produtoRouter)
 app.use('/api/v1/categoria', categoriaRouter)
 app.use('/api/v1/cardapio', cardapioRouter)
 app.use('/api/v1/opcoes', opcoesRouter)
+app.use('/api/v1/pedido', pedidoRouter)
 
 if (require.main === module) {
     app.listen(port, () => {
