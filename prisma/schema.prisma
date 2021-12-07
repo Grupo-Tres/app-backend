@@ -24,6 +24,7 @@ model user {
   senha       String
   telefone    String
   admin       Boolean
+  pedido      pedido[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
@@ -38,7 +39,7 @@ model categoria {
 }
 
 model produto {
-  id          String    @id @default(uuid())
+  id          String     @id @default(uuid())
   nome        String
   descricao   String
   foto        String
@@ -46,10 +47,11 @@ model produto {
   opcoes      opcoes[]
   quantidade  Int
   disponivel  Boolean
-  categoria   categoria @relation(fields: [categoriaId], references: [id])
+  categoria   categoria  @relation(fields: [categoriaId], references: [id])
   categoriaId String
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  carrinho    carrinho[]
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 }
 
 model opcoes {
@@ -58,4 +60,24 @@ model opcoes {
   preco     Float
   produto   produto @relation(fields: [produtoId], references: [id])
   produtoId String
+}
+
+model pedido {
+  id        String     @id @default(uuid())
+  user      user       @relation(fields: [userId], references: [id])
+  userId    String
+  carrinho  carrinho[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+}
+
+model carrinho {
+  id        String   @id @default(uuid())
+  pedido    pedido   @relation(fields: [pedidoId], references: [id])
+  pedidoId  String
+  produto   produto  @relation(fields: [produtoId], references: [id])
+  produtoId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
