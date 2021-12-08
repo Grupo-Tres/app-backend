@@ -63,21 +63,30 @@ model opcoes {
 }
 
 model pedido {
-  id        String     @id @default(uuid())
-  user      user       @relation(fields: [userId], references: [id])
-  userId    String
-  carrinho  carrinho[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-
+  id           String     @id @default(uuid())
+  numeroPedido Int
+  user         user       @relation(fields: [userId], references: [id])
+  userId       String
+  carrinho     carrinho[]
+  status       String     @default("Realizado")
+  comentarios  String?
+  subTotal     Float
+  taxaEntrega  Float
+  total        Float
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
 }
 
 model carrinho {
-  id        String   @id @default(uuid())
-  pedido    pedido   @relation(fields: [pedidoId], references: [id])
-  pedidoId  String
-  produto   produto  @relation(fields: [produtoId], references: [id])
-  produtoId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String   @id @default(uuid())
+  pedido     pedido   @relation(fields: [pedidoId], references: [id])
+  pedidoId   String
+  produto    produto  @relation(fields: [produtoId], references: [id])
+  produtoId  String
+  nome       String
+  opcao      String
+  quantidade Int
+  preco      Float
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 }
