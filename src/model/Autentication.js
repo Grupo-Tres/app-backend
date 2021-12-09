@@ -9,6 +9,13 @@ class Autentication {
   }
 
   verifyToken(req, res, next) {
+    console.log(req.body);
+    console.log(req.headers);
+
+    if (!req.headers["x-access-token"]) {
+      console.log("passou aqui")
+      return res.status(404).send({ error: "Sem resposta" });
+    }
     const token = req.headers["x-access-token"];
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       
