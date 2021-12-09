@@ -13,10 +13,6 @@ class AddCarrinho {
         console.log("Pedido: ", req.body.idPedido)
         if (req.body.idPedido != undefined) {
 
-            const pedido = await prisma.pedido.findUnique({
-                where: { id: req.body.idPedido[0].id }
-            })
-
             const carrinho = await prisma.carrinho.create({
                 data: { 
                     pedidoId: req.body.idPedido[0].id,
@@ -32,6 +28,23 @@ class AddCarrinho {
                 where: { pedidoId: req.body.idPedido[0].id }
             })
 
+            let total = 0
+            listaCarrinho.forEach((item, subtotal) => {
+                subtotal = item.quantidade * item.preco
+                total = total + subtotal
+                console.log('Total: ', total)
+                return total
+            })
+
+            const pedido = await prisma.pedido.update({
+                where: { id: req.body.idPedido[0].id },
+                data: {
+                    subTotal: total,
+                    taxaEntrega: 6.90,
+                    total: total + 6.90
+                }
+            })
+
             const resposta = {
                 status: "ok",
                 pedido: pedido,
@@ -42,7 +55,12 @@ class AddCarrinho {
             return res.status(200).send(resposta);
         } else {
             const pedido = await prisma.pedido.create({
-                data: { userId: decode.id }
+                data: { 
+                    userId: decode.id,
+                    subTotal: req.body.preco * req.body.quantidade,
+                    taxaEntrega: 6.90,
+                    total: req.body.preco * req.body.quantidade + 6.90,
+                }
             })
 
             const carrinho = await prisma.carrinho.create({
