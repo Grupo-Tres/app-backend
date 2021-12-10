@@ -68,7 +68,7 @@ model pedido {
   user         user       @relation(fields: [userId], references: [id])
   userId       String
   carrinho     carrinho[]
-  status       Int     @default(1)
+  status       Int     @default(0)
   comentarios  String?
   subTotal     Float?
   taxaEntrega  Float?
