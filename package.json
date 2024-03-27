@@ -37,7 +37,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.12.1",
     "@prisma/client": "^5.8.0-dev.41",
-    "express": "^4.17.1",
+    "express": "^4.19.2",
     "jsonwebtoken": "^8.5.1"
   },
   "directories": {
